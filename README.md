@@ -9,15 +9,14 @@ A flutter app that calculates college grades with a good ui.
 - Automatically update the percentages of grade weights
 
 ### Features to add/Changes to be made
-- Ability to calculate GPA
-
-- Follow material U themes
-- Add dark/light mode (currently only dark mode)
-- Make a logo
-- Overhaul the calculated screen
-- Change the "add class" buttons/ make it more intuitive 
-- Add a table that holds average grades to calculated screen
-- Add localization (Currently only the app is only in english)
+- [ ] Ability to calculate GPA
+- [ ] Follow device themes (material u) / Current goal
+- [ ] Add dark/light mode (currently only dark mode)
+- [ ] Make a logo
+- [ ] Overhaul the calculated screen
+- [ ] Change the "add class" buttons/ make it more intuitive 
+- [ ] Add a table that holds average grades to calculated screen
+- [ ] Add localization (Currently only the app is only in english)
 
 
 
