@@ -1,0 +1,133 @@
+import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'formlist.dart';
+import 'pagewrapper.dart';
+import 'hesapla_button.dart';
+
+class MultiFormPage extends StatefulWidget {
+  final bool tekDers;
+  final Map controller;
+  final String title;
+  final Color titleColor;
+  final double gap;
+  const MultiFormPage(
+      {Key? key,
+      this.gap = 16,
+      this.tekDers = false,
+      required this.controller,
+      required this.title,
+      this.titleColor = const Color(0xFF424242)})
+      : super(key: key);
+
+  @override
+  State<MultiFormPage> createState() => _MultiFormPageState();
+}
+
+class _MultiFormPageState extends State<MultiFormPage> {
+  void addFirstPage() {
+    if (widget.controller.isEmpty) {
+      TextEditingController odev = TextEditingController();
+      //odev.text = "0";
+      Map wid = {
+        "name": TextEditingController(),
+        "vize": {},
+        "odev": {},
+        "final": TextEditingController(),
+        "vizew": TextEditingController(),
+        "odevw": odev,
+        "finalw": TextEditingController(),
+        "kredi": TextEditingController(),
+      };
+      var page = CardWrapper(
+        child: FormList(controller: wid, gap: 16),
+        padding: 16,
+      );
+
+      widget.controller[page] = wid;
+    }
+  }
+
+  void addPage() {
+    setState(() {
+      TextEditingController odev = TextEditingController();
+
+      //odev.text = "0";
+
+      Map wid = {
+        "name": TextEditingController(),
+        "vize": {},
+        "odev": {},
+        "final": TextEditingController(),
+        "vizew": TextEditingController(),
+        "odevw": odev,
+        "finalw": TextEditingController(),
+        "kredi": TextEditingController(),
+      };
+      var page =
+          CardWrapper(child: FormList(controller: wid, gap: 16), padding: 16);
+
+      widget.controller[page] = wid;
+    });
+  }
+
+  void removePage() {
+    if (widget.controller.keys.length != 1) {
+      setState(() {
+        widget.controller.remove(widget.controller.keys.last);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    addFirstPage();
+    return PageWrapper(
+        child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              centerTitle: true,
+              shape: const RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(16))),
+              title: Text(widget.title),
+              backgroundColor: widget.titleColor,
+            ),
+            body: Column(
+              children: [
+                Expanded(
+                  child: CarouselSlider(
+                      options: CarouselOptions(
+                          height: double.infinity, enableInfiniteScroll: false),
+                      items: [
+                        ...widget.controller.keys,
+                        CardWrapper(
+                          padding: 16,
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.add_circle_rounded,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: addPage,
+                                ),
+                                IconButton(
+                                  onPressed: removePage,
+                                  icon: const Icon(
+                                    Icons.remove_circle_rounded,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              ]),
+                        )
+                      ]),
+                ),
+                HesaplaButton(
+                  controller: widget.controller,
+                )
+              ],
+            )));
+  }
+}
