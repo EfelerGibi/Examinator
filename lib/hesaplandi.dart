@@ -62,29 +62,34 @@ class Hesaplandi extends StatelessWidget {
         child: Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
+              iconTheme: IconThemeData(
+                  color: Theme.of(context).textTheme.headline5!.color),
               centerTitle: true,
               shape: const RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(16))),
-              title: Text(title),
-              backgroundColor: titleColor,
+              title: Text(
+                title,
+                style: Theme.of(context).textTheme.headline5,
+              ),
+              backgroundColor: Theme.of(context).colorScheme.background,
             ),
             body: CardWrapper(
                 padding: 24,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       "Ortalamanız",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onBackground,
                           fontSize: 42,
                           decoration: TextDecoration.underline),
                     ),
                     Text(
                       "Genel ortalamanız: " + hesaplama(),
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onBackground,
                       ),
                     )
                   ],

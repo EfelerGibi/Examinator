@@ -17,9 +17,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        //useMaterial3:true,
-        primarySwatch: Colors.blue,
+        //useMaterial3: true,
+        colorSchemeSeed: Colors.grey,
+        textTheme: const TextTheme(
+            button: TextStyle(color: Colors.grey),
+            headline1: TextStyle(color: Colors.grey)),
+        //primarySwatch: Colors.blue,
       ),
+      darkTheme: ThemeData(
+        //useMaterial3: true,
+        textTheme: const TextTheme(button: TextStyle(color: Colors.white)),
+        //primarySwatch: Colors.blue,
+        //colorSchemeSeed: Colors.grey,
+        scaffoldBackgroundColor: Colors.transparent,
+        brightness: Brightness.dark,
+        backgroundColor: const Color(0xFF424242),
+      ),
+      themeMode: ThemeMode.system,
       home: const MyHomePage(),
     );
   }
@@ -52,7 +66,7 @@ class MyHomePage extends StatelessWidget {
                           const Text(
                             "Examator",
                             style: TextStyle(
-                                color: Colors.white,
+                                //color: Colors.white,
                                 fontSize: 42,
                                 decoration: TextDecoration.underline),
                           ),

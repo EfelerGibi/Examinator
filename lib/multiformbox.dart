@@ -48,7 +48,8 @@ class _MultiFormBoxState extends State<MultiFormBox> {
         ),
         IconButton(
           onPressed: addField,
-          icon: Icon(Icons.add_circle_rounded, color: widget.borderColor),
+          icon: Icon(Icons.add_circle_rounded,
+              color: Theme.of(context).colorScheme.primary),
         )
       ];
       Row trow = Row(
@@ -86,7 +87,8 @@ class _MultiFormBoxState extends State<MultiFormBox> {
             //self.dispose();
           });
         },
-        icon: Icon(Icons.remove_circle_rounded, color: widget.borderColor),
+        icon: Icon(Icons.remove_circle_rounded,
+            color: Theme.of(context).colorScheme.primary),
       ));
     });
   }

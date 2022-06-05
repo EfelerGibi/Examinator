@@ -64,7 +64,7 @@ class FormBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-        style: TextStyle(color: fieldColor),
+        style: Theme.of(context).textTheme.labelMedium,
         controller: controller,
         onChanged: (value) => {notChange(value)},
         maxLength: maxLength,
@@ -90,15 +90,15 @@ class FormBox extends StatelessWidget {
         keyboardType: inputType,
         enabled: enabled,
         decoration: InputDecoration(
-            hintStyle: TextStyle(color: fieldColor),
-            labelStyle: TextStyle(color: fieldColor),
+            hintStyle: Theme.of(context).textTheme.labelSmall,
+            labelStyle: Theme.of(context).textTheme.bodySmall,
             counterText: "",
             labelText: question,
             hintText: hintText,
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide(
-                  color: borderColor,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ))));
   }
 }

@@ -86,11 +86,16 @@ class _MultiFormPageState extends State<MultiFormPage> {
             backgroundColor: Colors.transparent,
             appBar: AppBar(
               centerTitle: true,
+              iconTheme: IconThemeData(
+                  color: Theme.of(context).textTheme.headline5!.color),
               shape: const RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(16))),
-              title: Text(widget.title),
-              backgroundColor: widget.titleColor,
+              title: Text(
+                widget.title,
+                style: Theme.of(context).textTheme.headline5,
+              ),
+              backgroundColor: Theme.of(context).colorScheme.background,
             ),
             body: Column(
               children: [
@@ -107,17 +112,19 @@ class _MultiFormPageState extends State<MultiFormPage> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 IconButton(
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.add_circle_rounded,
-                                    color: Colors.white,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
                                   ),
                                   onPressed: addPage,
                                 ),
                                 IconButton(
                                   onPressed: removePage,
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.remove_circle_rounded,
-                                    color: Colors.white,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
                                   ),
                                 )
                               ]),
