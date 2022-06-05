@@ -86,10 +86,15 @@ class _MultiFormPageState extends State<MultiFormPage> {
             backgroundColor: Colors.transparent,
             appBar: AppBar(
               centerTitle: true,
+              iconTheme: IconThemeData(
+                  color: Theme.of(context).textTheme.headline5!.color),
               shape: const RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(16))),
-              title: Text(widget.title),
+              title: Text(
+                widget.title,
+                style: Theme.of(context).textTheme.headline5,
+              ),
               backgroundColor: Theme.of(context).colorScheme.background,
             ),
             body: Column(

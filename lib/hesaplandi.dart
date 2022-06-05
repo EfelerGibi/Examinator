@@ -62,13 +62,15 @@ class Hesaplandi extends StatelessWidget {
         child: Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
+              iconTheme: IconThemeData(
+                  color: Theme.of(context).textTheme.headline5!.color),
               centerTitle: true,
               shape: const RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(16))),
               title: Text(
                 title,
-                style: Theme.of(context).textTheme.headline1,
+                style: Theme.of(context).textTheme.headline5,
               ),
               backgroundColor: Theme.of(context).colorScheme.background,
             ),

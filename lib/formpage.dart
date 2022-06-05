@@ -57,11 +57,13 @@ class FormPage extends StatelessWidget {
       child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
+            iconTheme: IconThemeData(
+                color: Theme.of(context).textTheme.headline5!.color),
             centerTitle: true,
             shape: const RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16))),
-            title: Text(title),
+            title: Text(title, style: Theme.of(context).textTheme.headline5),
             backgroundColor: Theme.of(context).colorScheme.background,
           ),
           body: Column(children: [
