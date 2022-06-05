@@ -62,19 +62,20 @@ class HesaplaButton extends StatelessWidget {
                 showDialog<String>(
                     context: context,
                     builder: (BuildContext context) => AlertDialog(
-                            backgroundColor: const Color(0xFF424242),
+                            backgroundColor:
+                                Theme.of(context).colorScheme.background,
                             shape: const RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(16))),
                             title: const Text("Hatalı giriş yaptınız.",
                                 style: TextStyle(
-                                  color: Colors.white,
-                                )),
+                                    //color: Colors.white,
+                                    )),
                             content: const Text(
                                 'Girdilerinizi bir daha kontrol edip tekrar hesaplayınız.',
                                 style: TextStyle(
-                                  color: Colors.white,
-                                )),
+                                    //color: Colors.white,
+                                    )),
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () =>
@@ -84,9 +85,14 @@ class HesaplaButton extends StatelessWidget {
                             ]));
               }
             }, //hesaplamaPress
-            child: const Text("Hesapla"),
+            child: Text(
+              "Hesapla",
+              style:
+                  TextStyle(color: Theme.of(context).colorScheme.onBackground),
+            ),
             style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
+                backgroundColor: MaterialStateProperty.all(
+                    Theme.of(context).colorScheme.background),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16))))),

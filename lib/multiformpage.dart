@@ -90,7 +90,7 @@ class _MultiFormPageState extends State<MultiFormPage> {
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(16))),
               title: Text(widget.title),
-              backgroundColor: widget.titleColor,
+              backgroundColor: Theme.of(context).colorScheme.background,
             ),
             body: Column(
               children: [
@@ -107,17 +107,19 @@ class _MultiFormPageState extends State<MultiFormPage> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 IconButton(
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.add_circle_rounded,
-                                    color: Colors.white,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
                                   ),
                                   onPressed: addPage,
                                 ),
                                 IconButton(
                                   onPressed: removePage,
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.remove_circle_rounded,
-                                    color: Colors.white,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
                                   ),
                                 )
                               ]),

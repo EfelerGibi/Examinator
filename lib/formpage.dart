@@ -62,7 +62,7 @@ class FormPage extends StatelessWidget {
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16))),
             title: Text(title),
-            backgroundColor: titleColor,
+            backgroundColor: Theme.of(context).colorScheme.background,
           ),
           body: Column(children: [
             Expanded(child: _page[0]),
