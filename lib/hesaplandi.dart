@@ -70,7 +70,7 @@ class Hesaplandi extends StatelessWidget {
                       BorderRadius.vertical(bottom: Radius.circular(16))),
               title: Text(
                 title,
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
               backgroundColor: Theme.of(context).colorScheme.background,
             ),

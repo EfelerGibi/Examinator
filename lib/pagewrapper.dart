@@ -7,18 +7,37 @@ class PageWrapper extends StatelessWidget {
   const PageWrapper({Key? key, required this.child, this.padding = 0})
       : super(key: key);
 
+  Color darken(Color color, [double amount = .1]) {
+    assert(amount >= 0 && amount <= 1);
+
+    final hsl = HSLColor.fromColor(color);
+    final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
+
+    return hslDark.toColor();
+  }
+
+  Color lighten(Color color, [double amount = .1]) {
+    assert(amount >= 0 && amount <= 1);
+
+    final hsl = HSLColor.fromColor(color);
+    final hslLight =
+        hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
+
+    return hslLight.toColor();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment(-1.0, -1),
-              end: Alignment(-1.0, 1),
+              begin: const Alignment(-1.0, -1),
+              end: const Alignment(1.0, 1),
               colors: [
-                Color(0xFF3366FF),
-                Color(0xFF00CCFF),
+                darken(Theme.of(context).colorScheme.primary, 0.2),
+                lighten(Theme.of(context).colorScheme.primary, 0.2),
               ],
-              stops: [0.0, 1.0],
+              stops: const [0.0, 1.0],
               tileMode: TileMode.clamp),
         ),
         child: Padding(

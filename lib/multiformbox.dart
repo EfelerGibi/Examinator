@@ -105,8 +105,12 @@ class _MultiFormBoxState extends State<MultiFormBox> {
         if (widget.hasButton) ...[
           ElevatedButton(
             onPressed: addField,
-            child: Text(widget.buttonText),
+            child: Text(widget.buttonText,
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
             style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(
+                    Theme.of(context).colorScheme.primary),
                 fixedSize: MaterialStateProperty.all<Size>(
                     const Size.fromWidth(312312)),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(

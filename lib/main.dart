@@ -17,16 +17,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        //useMaterial3: true,
-        colorSchemeSeed: Colors.grey,
-        textTheme: const TextTheme(
+        useMaterial3: true,
+        //colorSchemeSeed: Colors.green,
+        textTheme: TextTheme(
             button: TextStyle(color: Colors.grey),
-            headline1: TextStyle(color: Colors.grey)),
+            headline5: TextStyle(fontWeight: FontWeight.bold)),
+        scaffoldBackgroundColor: Colors.transparent,
         //primarySwatch: Colors.blue,
       ),
       darkTheme: ThemeData(
-        //useMaterial3: true,
-        textTheme: const TextTheme(button: TextStyle(color: Colors.white)),
+        useMaterial3: true,
+        textTheme: const TextTheme(
+          button: TextStyle(color: Colors.white),
+        ),
         //primarySwatch: Colors.blue,
         //colorSchemeSeed: Colors.grey,
         scaffoldBackgroundColor: Colors.transparent,
@@ -41,6 +44,14 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
+  Color darken(Color color, [double amount = .1]) {
+    assert(amount >= 0 && amount <= 1);
+
+    final hsl = HSLColor.fromColor(color);
+    final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
+
+    return hslDark.toColor();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,13 +74,8 @@ class MyHomePage extends StatelessWidget {
                           const FlutterLogo(
                             size: 72,
                           ),
-                          const Text(
-                            "Examator",
-                            style: TextStyle(
-                                //color: Colors.white,
-                                fontSize: 42,
-                                decoration: TextDecoration.underline),
-                          ),
+                          Text("Examator",
+                              style: Theme.of(context).textTheme.displayMedium),
                           const SizedBox(height: 16),
                           ElevatedButton(
                               onPressed: () => Navigator.push(context,
@@ -80,8 +86,12 @@ class MyHomePage extends StatelessWidget {
                                         controller: {},
                                         title: "Ortalama Hesapla");
                                   })),
-                              child: const Text("Ortalama Hesapla"),
+                              child: Text("Ortalama Hesapla",
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium),
                               style: ElevatedButton.styleFrom(
+                                  primary:
+                                      Theme.of(context).colorScheme.primary,
                                   minimumSize: const Size(200, 40),
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
@@ -106,8 +116,12 @@ class MyHomePage extends StatelessWidget {
                                       title: 'Tek Ders Hesapla',
                                     );
                                   })),
-                              child: const Text("Tek Ders Hesapla"),
+                              child: Text("Tek Ders Hesapla",
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium),
                               style: ElevatedButton.styleFrom(
+                                  primary:
+                                      Theme.of(context).colorScheme.primary,
                                   minimumSize: const Size(200, 40),
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
