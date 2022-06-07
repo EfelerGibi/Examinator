@@ -34,8 +34,8 @@ class PageWrapper extends StatelessWidget {
               begin: const Alignment(-1.0, -1),
               end: const Alignment(1.0, 1),
               colors: [
-                darken(Theme.of(context).colorScheme.primary, 0.2),
-                lighten(Theme.of(context).colorScheme.primary, 0.2),
+                Theme.of(context).colorScheme.primary,
+                Theme.of(context).colorScheme.onPrimaryContainer,
               ],
               stops: const [0.0, 1.0],
               tileMode: TileMode.clamp),

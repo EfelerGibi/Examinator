@@ -17,11 +17,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        brightness: Brightness.light,
         useMaterial3: true,
-        //colorSchemeSeed: Colors.green,
+        //colorSchemeSeed: Colors.grey,
+        backgroundColor: Colors.grey[100],
+
         textTheme: TextTheme(
-            button: TextStyle(color: Colors.grey),
-            headline5: TextStyle(fontWeight: FontWeight.bold)),
+          button: TextStyle(color: Colors.black),
+          headline5: TextStyle(fontWeight: FontWeight.bold),
+        ),
         scaffoldBackgroundColor: Colors.transparent,
         //primarySwatch: Colors.blue,
       ),
@@ -31,12 +35,12 @@ class MyApp extends StatelessWidget {
           button: TextStyle(color: Colors.white),
         ),
         //primarySwatch: Colors.blue,
-        //colorSchemeSeed: Colors.grey,
+        //colorSchemeSeed: Colors.deepPurple,
         scaffoldBackgroundColor: Colors.transparent,
         brightness: Brightness.dark,
         backgroundColor: const Color(0xFF424242),
       ),
-      themeMode: ThemeMode.system,
+      //themeMode: ThemeMode.system,
       home: const MyHomePage(),
     );
   }
@@ -86,9 +90,12 @@ class MyHomePage extends StatelessWidget {
                                         controller: {},
                                         title: "Ortalama Hesapla");
                                   })),
-                              child: Text("Ortalama Hesapla",
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium),
+                              child: const Text("Ortalama Hesapla",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600,
+                                      wordSpacing: 0.15,
+                                      fontSize: 16)),
                               style: ElevatedButton.styleFrom(
                                   primary:
                                       Theme.of(context).colorScheme.primary,
@@ -116,9 +123,12 @@ class MyHomePage extends StatelessWidget {
                                       title: 'Tek Ders Hesapla',
                                     );
                                   })),
-                              child: Text("Tek Ders Hesapla",
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium),
+                              child: const Text("Tek Ders Hesapla",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600,
+                                      wordSpacing: 0.15,
+                                      fontSize: 16)),
                               style: ElevatedButton.styleFrom(
                                   primary:
                                       Theme.of(context).colorScheme.primary,

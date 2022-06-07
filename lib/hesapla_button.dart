@@ -87,8 +87,7 @@ class HesaplaButton extends StatelessWidget {
             }, //hesaplamaPress
             child: Text(
               "Hesapla",
-              style:
-                  TextStyle(color: Theme.of(context).colorScheme.onBackground),
+              style: Theme.of(context).textTheme.button,
             ),
             style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(
