@@ -24,6 +24,7 @@ class MultiFormPage extends StatefulWidget {
 }
 
 class _MultiFormPageState extends State<MultiFormPage> {
+  final CarouselController _carouselController = CarouselController();
   void addFirstPage() {
     if (widget.controller.isEmpty) {
       TextEditingController odev = TextEditingController();
@@ -70,11 +71,20 @@ class _MultiFormPageState extends State<MultiFormPage> {
     });
   }
 
-  void removePage() {
+  void removePage() async {
     if (widget.controller.keys.length != 1) {
       setState(() {
         widget.controller.remove(widget.controller.keys.last);
       });
+      await Future.delayed(const Duration(milliseconds: 100), () {});
+      _carouselController.previousPage(duration: Duration(milliseconds: 100));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Sayfa Kaldırıldı"),
+        duration: Duration(seconds: 1),
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.all(8),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      ));
     }
   }
 
@@ -101,6 +111,7 @@ class _MultiFormPageState extends State<MultiFormPage> {
               children: [
                 Expanded(
                   child: CarouselSlider(
+                      carouselController: _carouselController,
                       options: CarouselOptions(
                           height: double.infinity, enableInfiniteScroll: false),
                       items: [
