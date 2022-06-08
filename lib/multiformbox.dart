@@ -30,9 +30,11 @@ class MultiFormBox extends StatefulWidget {
 
 class _MultiFormBoxState extends State<MultiFormBox> {
   late Map widlist = widget.controller[widget.title];
+  bool _addedFirstField = false;
 
   addFirstField() {
-    if (widget.hasFirstField & widlist.isEmpty) {
+    //print("aff was called");
+    if (widget.hasFirstField) {
       TextEditingController controller = TextEditingController();
       List<Widget> newWid = [
         Expanded(
@@ -56,13 +58,15 @@ class _MultiFormBoxState extends State<MultiFormBox> {
         children: newWid,
       );
       widlist[trow] = [newWid[0], controller];
-      return [trow];
+      _addedFirstField = true;
     }
   }
 
   addField() {
+    //print("want to add field");
     setState(() {
       TextEditingController controller = TextEditingController();
+      //print("1");
       List<Widget> newWid = [
         Expanded(
           child: FormBox(
@@ -76,10 +80,13 @@ class _MultiFormBoxState extends State<MultiFormBox> {
           width: 10,
         )
       ];
+      //print("2");
       Row trow = Row(
         children: newWid,
       );
+      //print("3");
       widlist[trow] = [newWid[0], controller];
+      //print("4");
       newWid.add(IconButton(
         onPressed: () {
           setState(() {
@@ -90,6 +97,7 @@ class _MultiFormBoxState extends State<MultiFormBox> {
         icon: Icon(Icons.remove_circle_rounded,
             color: Theme.of(context).colorScheme.primary),
       ));
+      //print(widlist);
     });
   }
 
@@ -99,7 +107,7 @@ class _MultiFormBoxState extends State<MultiFormBox> {
 
   @override
   Widget build(BuildContext context) {
-    addFirstField();
+    if (!_addedFirstField) addFirstField();
     return Column(
       children: <Widget>[
         if (widget.hasButton) ...[

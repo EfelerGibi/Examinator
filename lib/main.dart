@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         useMaterial3: true,
-        //colorSchemeSeed: Colors.grey,
+        //colorSchemeSeed: Colors.purple,
         backgroundColor: Colors.grey[100],
 
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           button: TextStyle(color: Colors.black),
           headline5: TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -35,12 +35,12 @@ class MyApp extends StatelessWidget {
           button: TextStyle(color: Colors.white),
         ),
         //primarySwatch: Colors.blue,
-        //colorSchemeSeed: Colors.deepPurple,
+        //colorSchemeSeed: Color.fromARGB(109, 51, 75, 63),
         scaffoldBackgroundColor: Colors.transparent,
         brightness: Brightness.dark,
         backgroundColor: const Color(0xFF424242),
       ),
-      //themeMode: ThemeMode.system,
+      themeMode: ThemeMode.system,
       home: const MyHomePage(),
     );
   }

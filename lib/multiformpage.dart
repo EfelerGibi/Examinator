@@ -77,12 +77,13 @@ class _MultiFormPageState extends State<MultiFormPage> {
         widget.controller.remove(widget.controller.keys.last);
       });
       await Future.delayed(const Duration(milliseconds: 100), () {});
-      _carouselController.previousPage(duration: Duration(milliseconds: 100));
+      _carouselController.previousPage(
+          duration: const Duration(milliseconds: 100));
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: const Text("Sayfa Kaldırıldı"),
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         behavior: SnackBarBehavior.floating,
-        margin: EdgeInsets.all(8),
+        margin: const EdgeInsets.all(8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ));
     }
@@ -113,7 +114,9 @@ class _MultiFormPageState extends State<MultiFormPage> {
                   child: CarouselSlider(
                       carouselController: _carouselController,
                       options: CarouselOptions(
-                          height: double.infinity, enableInfiniteScroll: false),
+                          scrollDirection: Axis.horizontal,
+                          height: double.infinity,
+                          enableInfiniteScroll: false),
                       items: [
                         ...widget.controller.keys,
                         CardWrapper(
