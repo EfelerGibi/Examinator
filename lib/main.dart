@@ -2,6 +2,7 @@ import 'package:examinator/multiformpage.dart';
 import 'package:flutter/material.dart';
 import 'formpage.dart';
 import 'pagewrapper.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 // import 'testwid.dart';
 
 void main() {
@@ -14,35 +15,41 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        brightness: Brightness.light,
-        useMaterial3: true,
-        //colorSchemeSeed: Colors.purple,
-        backgroundColor: Colors.grey[100],
+    return DynamicColorBuilder(
+        builder: (ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) {
+      return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(colorScheme: lightColorScheme),
+        darkTheme: ThemeData(colorScheme: darkColorScheme)
+        /* ThemeData(
+          brightness: Brightness.light,
+          useMaterial3: true,
+          //colorSchemeSeed: Colors.purple,
+          backgroundColor: Colors.grey[100],
 
-        textTheme: const TextTheme(
-          button: TextStyle(color: Colors.black),
-          headline5: TextStyle(fontWeight: FontWeight.bold),
+          textTheme: const TextTheme(
+            button: TextStyle(color: Colors.black),
+            headline5: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          scaffoldBackgroundColor: Colors.transparent,
+          //primarySwatch: Colors.blue,
         ),
-        scaffoldBackgroundColor: Colors.transparent,
-        //primarySwatch: Colors.blue,
-      ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        textTheme: const TextTheme(
-          button: TextStyle(color: Colors.white),
-        ),
-        //primarySwatch: Colors.blue,
-        //colorSchemeSeed: Color.fromARGB(109, 51, 75, 63),
-        scaffoldBackgroundColor: Colors.transparent,
-        brightness: Brightness.dark,
-        backgroundColor: const Color(0xFF424242),
-      ),
-      themeMode: ThemeMode.system,
-      home: const MyHomePage(),
-    );
+        darkTheme: ThemeData(
+          useMaterial3: true,
+          textTheme: const TextTheme(
+            button: TextStyle(color: Colors.white),
+          ),
+          //primarySwatch: Colors.blue,
+          //colorSchemeSeed: Color.fromARGB(109, 51, 75, 63),
+          scaffoldBackgroundColor: Colors.transparent,
+          brightness: Brightness.dark,
+          backgroundColor: const Color(0xFF424242),
+        ) */
+        ,
+        themeMode: ThemeMode.system,
+        home: const MyHomePage(),
+      );
+    });
   }
 }
 
@@ -90,9 +97,11 @@ class MyHomePage extends StatelessWidget {
                                         controller: {},
                                         title: "Ortalama Hesapla");
                                   })),
-                              child: const Text("Ortalama Hesapla",
+                              child: Text("Ortalama Hesapla",
                                   style: TextStyle(
-                                      color: Colors.black,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary,
                                       fontWeight: FontWeight.w600,
                                       wordSpacing: 0.15,
                                       fontSize: 16)),
@@ -123,9 +132,11 @@ class MyHomePage extends StatelessWidget {
                                       title: 'Tek Ders Hesapla',
                                     );
                                   })),
-                              child: const Text("Tek Ders Hesapla",
+                              child: Text("Tek Ders Hesapla",
                                   style: TextStyle(
-                                      color: Colors.black,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary,
                                       fontWeight: FontWeight.w600,
                                       wordSpacing: 0.15,
                                       fontSize: 16)),
