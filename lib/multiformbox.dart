@@ -30,10 +30,8 @@ class MultiFormBox extends StatefulWidget {
 
 class _MultiFormBoxState extends State<MultiFormBox> {
   late Map widlist = widget.controller[widget.title];
-  bool _addedFirstField = false;
 
   addFirstField() {
-    //print("aff was called");
     if (widget.hasFirstField) {
       TextEditingController controller = TextEditingController();
       List<Widget> newWid = [
@@ -49,7 +47,44 @@ class _MultiFormBoxState extends State<MultiFormBox> {
           width: 10,
         ),
         IconButton(
-          onPressed: addField,
+          onPressed: () {
+            //print("want to add field");
+            setState(() {
+              TextEditingController controller = TextEditingController();
+              //print("1");
+              List<Widget> newWid = [
+                Expanded(
+                  child: FormBox(
+                      question: widget.question,
+                      hintText: widget.hintText,
+                      fieldColor: widget.fieldColor,
+                      borderColor: widget.borderColor,
+                      controller: controller),
+                ),
+                const SizedBox(
+                  width: 10,
+                )
+              ];
+              //print("2");
+              Row trow = Row(
+                children: newWid,
+              );
+              //print("3");
+              widlist[trow] = [newWid[0], controller];
+              //print("4");
+              newWid.add(IconButton(
+                onPressed: () {
+                  setState(() {
+                    widlist.remove(trow);
+                    //self.dispose();
+                  });
+                },
+                icon: Icon(Icons.remove_circle_rounded,
+                    color: Theme.of(context).colorScheme.primary),
+              ));
+              //print(widlist);
+            });
+          },
           icon: Icon(Icons.add_circle_rounded,
               color: Theme.of(context).colorScheme.primary),
         )
@@ -57,8 +92,8 @@ class _MultiFormBoxState extends State<MultiFormBox> {
       Row trow = Row(
         children: newWid,
       );
-      widlist[trow] = [newWid[0], controller];
-      _addedFirstField = true;
+      widlist[const SizedBox()] = [newWid[0], controller];
+      return trow;
     }
   }
 
@@ -107,9 +142,10 @@ class _MultiFormBoxState extends State<MultiFormBox> {
 
   @override
   Widget build(BuildContext context) {
-    if (!_addedFirstField) addFirstField();
+    //if (!_addedFirstField) addFirstField();
     return Column(
       children: <Widget>[
+        if (widget.hasFirstField) addFirstField(),
         if (widget.hasButton) ...[
           ElevatedButton(
             onPressed: addField,

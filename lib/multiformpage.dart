@@ -80,7 +80,11 @@ class _MultiFormPageState extends State<MultiFormPage> {
       _carouselController.previousPage(
           duration: const Duration(milliseconds: 100));
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text("Sayfa Kaldırıldı"),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        content: Text(
+          "Sayfa Kaldırıldı",
+          style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+        ),
         duration: const Duration(seconds: 1),
         behavior: SnackBarBehavior.floating,
         margin: const EdgeInsets.all(8),
