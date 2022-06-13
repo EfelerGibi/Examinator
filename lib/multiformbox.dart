@@ -30,9 +30,11 @@ class MultiFormBox extends StatefulWidget {
 
 class _MultiFormBoxState extends State<MultiFormBox> {
   late Map widlist = widget.controller[widget.title];
+  int _index = 0;
+  bool _addedFirstField = false;
 
   addFirstField() {
-    if (widget.hasFirstField) {
+    if (widget.hasFirstField && !_addedFirstField) {
       TextEditingController controller = TextEditingController();
       List<Widget> newWid = [
         Expanded(
@@ -47,44 +49,7 @@ class _MultiFormBoxState extends State<MultiFormBox> {
           width: 10,
         ),
         IconButton(
-          onPressed: () {
-            //print("want to add field");
-            setState(() {
-              TextEditingController controller = TextEditingController();
-              //print("1");
-              List<Widget> newWid = [
-                Expanded(
-                  child: FormBox(
-                      question: widget.question,
-                      hintText: widget.hintText,
-                      fieldColor: widget.fieldColor,
-                      borderColor: widget.borderColor,
-                      controller: controller),
-                ),
-                const SizedBox(
-                  width: 10,
-                )
-              ];
-              //print("2");
-              Row trow = Row(
-                children: newWid,
-              );
-              //print("3");
-              widlist[trow] = [newWid[0], controller];
-              //print("4");
-              newWid.add(IconButton(
-                onPressed: () {
-                  setState(() {
-                    widlist.remove(trow);
-                    //self.dispose();
-                  });
-                },
-                icon: Icon(Icons.remove_circle_rounded,
-                    color: Theme.of(context).colorScheme.primary),
-              ));
-              //print(widlist);
-            });
-          },
+          onPressed: addField,
           icon: Icon(Icons.add_circle_rounded,
               color: Theme.of(context).colorScheme.primary),
         )
@@ -92,12 +57,14 @@ class _MultiFormBoxState extends State<MultiFormBox> {
       Row trow = Row(
         children: newWid,
       );
-      widlist[const SizedBox()] = [newWid[0], controller];
-      return trow;
+      widlist[0] = [trow, controller];
+      //return trow;
+      _addedFirstField = true;
     }
   }
 
   addField() {
+    _index += 1;
     //print("want to add field");
     setState(() {
       TextEditingController controller = TextEditingController();
@@ -113,6 +80,17 @@ class _MultiFormBoxState extends State<MultiFormBox> {
         ),
         const SizedBox(
           width: 10,
+        ),
+        IconButton(
+          onPressed: () {
+            setState(() {
+              widlist.remove(_index);
+              _index -= 1;
+              //self.dispose();
+            });
+          },
+          icon: Icon(Icons.remove_circle_rounded,
+              color: Theme.of(context).colorScheme.primary),
         )
       ];
       //print("2");
@@ -120,18 +98,19 @@ class _MultiFormBoxState extends State<MultiFormBox> {
         children: newWid,
       );
       //print("3");
-      widlist[trow] = [newWid[0], controller];
+      widlist[_index] = [trow, controller];
       //print("4");
-      newWid.add(IconButton(
-        onPressed: () {
-          setState(() {
-            widlist.remove(trow);
-            //self.dispose();
-          });
-        },
-        icon: Icon(Icons.remove_circle_rounded,
-            color: Theme.of(context).colorScheme.primary),
-      ));
+      // newWid.add(IconButton(
+      //   onPressed: () {
+      //     setState(() {
+      //       widlist.remove(_index);
+      //       _index -= 1;
+      //       //self.dispose();
+      //     });
+      //   },
+      //   icon: Icon(Icons.remove_circle_rounded,
+      //       color: Theme.of(context).colorScheme.primary),
+      // ));
       //print(widlist);
     });
   }
@@ -142,10 +121,9 @@ class _MultiFormBoxState extends State<MultiFormBox> {
 
   @override
   Widget build(BuildContext context) {
-    //if (!_addedFirstField) addFirstField();
+    if (widget.hasFirstField && !_addedFirstField) addFirstField();
     return Column(
       children: <Widget>[
-        if (widget.hasFirstField) addFirstField(),
         if (widget.hasButton) ...[
           ElevatedButton(
             onPressed: addField,
@@ -164,8 +142,8 @@ class _MultiFormBoxState extends State<MultiFormBox> {
           const SizedBox(height: 16)
         ],
         for (var i in widlist.keys.toList()) ...[
-          if (widlist.keys.toList()[0] != i) const SizedBox(height: 16),
-          i,
+          if (0 != i) const SizedBox(height: 16),
+          widlist[i][0],
           if (widget.hasButton && i == widlist.keys.toList().last) ...[
             const SizedBox(
               height: 16,
