@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'formpage.dart';
 import 'pagewrapper.dart';
 import 'package:dynamic_color/dynamic_color.dart';
+import 'apptheme.dart';
 // import 'testwid.dart';
 
 void main() {
@@ -19,8 +20,8 @@ class MyApp extends StatelessWidget {
         builder: (ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) {
       return MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(colorScheme: lightColorScheme),
-        darkTheme: ThemeData(colorScheme: darkColorScheme)
+        theme: AppTheme.lightTheme(lightColorScheme),
+        darkTheme: AppTheme.darkTheme(darkColorScheme)
         /* ThemeData(
           brightness: Brightness.light,
           useMaterial3: true,
