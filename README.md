@@ -10,7 +10,8 @@ A flutter app that calculates college grades with a good ui.
 
 ### Features to add/Changes to be made
 - [ ] Ability to calculate GPA
-- [ ] Follow device themes (material u) / Current goal
+- [ ] Fix multihomework pages.
+- [x] Follow device themes (material u)
 - [x] Add dark/light mode
 - [ ] Make a logo
 - [ ] Overhaul the calculated screen
