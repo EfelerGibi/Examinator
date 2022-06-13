@@ -40,9 +40,9 @@ class PageWrapper extends StatelessWidget {
               stops: const [0.0, 1.0],
               tileMode: TileMode.clamp),
         ),
-        child: Padding(
-          padding: EdgeInsets.all(padding),
-          child: Container(child: child),
+        child: Container(
+          child: child,
+          margin: EdgeInsets.all(padding),
         ));
   }
 }
@@ -64,45 +64,19 @@ class CardWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (infHeight) {
-      return Padding(
-          padding: EdgeInsets.all(outerPadding),
-          child: Container(
-              height: double.infinity,
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFF424242).withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                  color: Theme.of(context).colorScheme.background,
-                  borderRadius: BorderRadius.circular(16)),
-              width: double.infinity,
-              child: Padding(
-                padding: EdgeInsets.all(padding),
-                child: child,
-              )));
-    } else {
-      return Padding(
+    return SizedBox(
+      width: double.infinity,
+      child: Card(
+        elevation: 8,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(padding),
+        ),
+        margin: EdgeInsets.all(padding),
+        child: Padding(
           padding: EdgeInsets.all(padding),
-          child: Container(
-              // alignment: Axis.vertical,
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFF424242).withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                  color: Theme.of(context).colorScheme.background,
-                  borderRadius: BorderRadius.circular(16)),
-              width: double.infinity,
-              child: Padding(padding: EdgeInsets.all(padding), child: child)));
-    }
+          child: child,
+        ),
+      ),
+    );
   }
 }
