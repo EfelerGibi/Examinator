@@ -15,16 +15,6 @@ class GpaHesaplandi extends StatelessWidget {
   String hesaplama() {
     double _ort = 0;
     double _creds = 0;
-    Map<double, String> _scalars = {
-      4.0: "aa",
-      3.5: "ba",
-      3.0: "bb",
-      2.5: "cb",
-      2.0: "cc",
-      1.5: "dc",
-      1.0: "dd",
-      0.0: "ff",
-    };
     List<String> _scalars1 = [
       "aa",
       "ba",
