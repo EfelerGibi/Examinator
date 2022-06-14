@@ -68,6 +68,7 @@ class _GpaListState extends State<GpaList> {
         Expanded(
           child: FormBox(
               validatorMode: 1,
+              inputType: TextInputType.text,
               maxLength: 2,
               question: "Dersin Notu",
               controller: controller,
