@@ -1,9 +1,9 @@
-import 'package:examinator/multiformpage.dart';
+import 'package:examinator/multiform_page.dart';
 import 'package:flutter/material.dart';
-import 'formpage.dart';
+import 'form_page.dart';
 import 'pagewrapper.dart';
 import 'package:dynamic_color/dynamic_color.dart';
-import 'apptheme.dart';
+import 'app_theme.dart';
 // import 'testwid.dart';
 
 void main() {
@@ -21,32 +21,7 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         title: 'Flutter Demo',
         theme: AppTheme.lightTheme(lightColorScheme),
-        darkTheme: AppTheme.darkTheme(darkColorScheme)
-        /* ThemeData(
-          brightness: Brightness.light,
-          useMaterial3: true,
-          //colorSchemeSeed: Colors.purple,
-          backgroundColor: Colors.grey[100],
-
-          textTheme: const TextTheme(
-            button: TextStyle(color: Colors.black),
-            headline5: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          scaffoldBackgroundColor: Colors.transparent,
-          //primarySwatch: Colors.blue,
-        ),
-        darkTheme: ThemeData(
-          useMaterial3: true,
-          textTheme: const TextTheme(
-            button: TextStyle(color: Colors.white),
-          ),
-          //primarySwatch: Colors.blue,
-          //colorSchemeSeed: Color.fromARGB(109, 51, 75, 63),
-          scaffoldBackgroundColor: Colors.transparent,
-          brightness: Brightness.dark,
-          backgroundColor: const Color(0xFF424242),
-        ) */
-        ,
+        darkTheme: AppTheme.darkTheme(darkColorScheme),
         themeMode: ThemeMode.system,
         home: const MyHomePage(),
       );
@@ -56,14 +31,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
-  Color darken(Color color, [double amount = .1]) {
-    assert(amount >= 0 && amount <= 1);
-
-    final hsl = HSLColor.fromColor(color);
-    final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
-
-    return hslDark.toColor();
-  }
 
   @override
   Widget build(BuildContext context) {
