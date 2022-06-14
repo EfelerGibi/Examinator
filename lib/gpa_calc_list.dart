@@ -12,7 +12,7 @@ class GpaList extends StatefulWidget {
 }
 
 class _GpaListState extends State<GpaList> {
-  late final Map _widlist = widget.controller;
+  //late final Map _widlist = widget.controller;
   int _index = 0;
   bool _addedFirstField = false;
 
@@ -21,7 +21,7 @@ class _GpaListState extends State<GpaList> {
       final TextEditingController _firstcontroller = TextEditingController();
       final TextEditingController _firstKrediController =
           TextEditingController();
-      _widlist[0] = [
+      widget.controller[0] = [
         Row(
           children: [
             Expanded(
@@ -86,7 +86,7 @@ class _GpaListState extends State<GpaList> {
         ),
         IconButton(
           onPressed: () {
-            _widlist.remove(_localindex);
+            widget.controller.remove(_localindex);
             _index--;
             setState(() {});
           },
@@ -95,7 +95,7 @@ class _GpaListState extends State<GpaList> {
         )
       ],
     );
-    _widlist[_localindex] = [
+    widget.controller[_localindex] = [
       trow,
       [controller, krediController]
     ];
@@ -107,8 +107,8 @@ class _GpaListState extends State<GpaList> {
     addFirstField();
     return ListView(
       children: [
-        for (var i in _widlist.keys) ...[
-          _widlist[i]?[0],
+        for (var i in widget.controller.keys) ...[
+          widget.controller[i]?[0],
           SizedBox(
             height: widget.gap,
           )

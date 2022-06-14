@@ -13,6 +13,18 @@ class GpaCalc extends StatelessWidget {
       required this.controller})
       : super(key: key);
 
+  bool hesaplamaValidator() {
+    for (var i in controller.values) {
+      if (!["ff", "na", "dd", "dc", "cc", "cb", "bb", "ba", "aa"]
+          .contains(i[1][0].text.toLowerCase())) {
+        return false;
+      } else if (double.tryParse(i[1][1].text) == null) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return PageWrapper(
@@ -43,7 +55,38 @@ class GpaCalc extends StatelessWidget {
                     child: SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              if (hesaplamaValidator()) {
+                              } else {
+                                showDialog<String>(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        AlertDialog(
+                                            backgroundColor: Theme.of(context)
+                                                .colorScheme
+                                                .background,
+                                            shape: const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(16))),
+                                            title: const Text(
+                                                "Hatalı giriş yaptınız.",
+                                                style: TextStyle(
+                                                    //color: Colors.white,
+                                                    )),
+                                            content: const Text(
+                                                'Girdilerinizi bir daha kontrol edip tekrar hesaplayınız.',
+                                                style: TextStyle(
+                                                    //color: Colors.white,
+                                                    )),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    context, 'Tamam'),
+                                                child: const Text('Tamam'),
+                                              )
+                                            ]));
+                              }
+                            },
                             child: Text(
                               "Hesapla",
                               style: Theme.of(context).textTheme.button,
