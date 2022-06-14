@@ -1,56 +1,57 @@
+import 'package:examinator/pagewrapper.dart';
 import 'package:flutter/material.dart';
-import 'pagewrapper.dart';
 
-class Hesaplandi extends StatelessWidget {
+class GpaHesaplandi extends StatelessWidget {
   final String title;
   final Map controller;
   final Map _dersler = {};
 
-  Hesaplandi({
+  GpaHesaplandi({
     Key? key,
     required this.controller,
     required this.title,
   }) : super(key: key);
 
   String hesaplama() {
-    double ortalama = 0;
-    double kredi = 0;
-    for (var values in controller.values) {
-      _dersler[values["name"]] = {
-        "ortalama": (((parseDouble(values["final"]) *
-                    parseDouble(values["finalw"])) +
-                (parseDouble(values["vizew"]) * multiOrtala(values["vize"])) +
-                (parseDouble(values["odevw"], r: 0.0) *
-                    multiOrtala(values["odev"]))) /
-            100),
-        "kredi": parseDouble(values["kredi"])
-      };
+    double _ort = 0;
+    double _creds = 0;
+    Map<double, String> _scalars = {
+      4.0: "aa",
+      3.5: "ba",
+      3.0: "bb",
+      2.5: "cb",
+      2.0: "cc",
+      1.5: "dc",
+      1.0: "dd",
+      0.0: "ff",
+    };
+    List<String> _scalars1 = [
+      "aa",
+      "ba",
+      "bb",
+      "cb",
+      "cc",
+      "cd",
+      "dd",
+      "ff",
+      "na"
+    ];
+    List<double> _scalars2 = [4.0, 3.5, 3.0, 2.5, 2.0, 1.5, 1.0, 0.0, 0.0];
+    // _scalars = Map.unmodifiable(_scalars);
+    for (var i in controller.keys) {
+      String _sc = controller[i][1][0].text.toLowerCase();
+      _creds += double.parse(controller[i][1][1].text);
+      _ort += double.parse(controller[i][1][1].text) *
+          _scalars2[_scalars1.indexOf(controller[i][1][0].text.toLowerCase())];
     }
-    for (var ders in _dersler.keys) {
-      ortalama += _dersler[ders]["ortalama"] * _dersler[ders]["kredi"];
-      kredi += _dersler[ders]["kredi"];
-    }
-    return (ortalama / kredi).toStringAsFixed(2);
-  }
 
-  double parseDouble(value, {r = 1.0}) {
-    if (double.tryParse(value.text) != null) {
-      return double.parse(value.text);
-    }
-    return r;
-  }
-
-  double multiOrtala(Map value) {
-    double toplam = 0;
-    int sayi = 0;
-    for (var i in value.values) {
-      toplam += double.parse(i[1].text);
-      sayi++;
-    }
-    if (sayi != 0) {
-      return toplam / sayi;
+    if (_creds != 0) {
+      return (_ort / _creds).toStringAsFixed(2) +
+          " " +
+          _scalars1[_scalars2.indexOf((((_ort / _creds) * 2).round() / 2))]
+              .toUpperCase();
     } else {
-      return 0;
+      return 0.toString();
     }
   }
 

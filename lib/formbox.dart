@@ -84,8 +84,19 @@ class FormBox extends StatelessWidget {
             } else if (100 < double.parse(value)) {
               return "100'den küçük değer giriniz.";
             }
+          } else {
+            if (value == null || value.isEmpty) {
+              if (emptyCheck) {
+                return null;
+              } else {
+                return null;
+              }
+            } else if (!["ff", "na", "dd", "dc", "cc", "cb", "bb", "ba", "aa"]
+                .contains(value.toLowerCase())) {
+              return "Uygun değer Giriniz";
+            }
+            return null;
           }
-          return null;
         },
         keyboardType: inputType,
         enabled: enabled,
