@@ -15,17 +15,16 @@ class GpaHesaplandi extends StatelessWidget {
   String hesaplama() {
     double _ort = 0;
     double _creds = 0;
-    // Map<String, double> _scalars = {
-    //   "aa": 4.0,
-    //   "ba": 3.5,
-    //   "bb": 3.0,
-    //   "cb": 2.5,
-    //   "cc": 2.0,
-    //   "dc": 1.5,
-    //   "dd": 1.0,
-    //   "ff": 0.0,
-    //   "na": 0.0
-    // };
+    Map<double, String> _scalars = {
+      4.0: "aa",
+      3.5: "ba",
+      3.0: "bb",
+      2.5: "cb",
+      2.0: "cc",
+      1.5: "dc",
+      1.0: "dd",
+      0.0: "ff",
+    };
     List<String> _scalars1 = [
       "aa",
       "ba",
@@ -46,7 +45,14 @@ class GpaHesaplandi extends StatelessWidget {
           _scalars2[_scalars1.indexOf(controller[i][1][0].text.toLowerCase())];
     }
 
-    return (_ort / _creds).toStringAsFixed(2);
+    if (_creds != 0) {
+      return (_ort / _creds).toStringAsFixed(2) +
+          " " +
+          _scalars1[_scalars2.indexOf((((_ort / _creds) * 2).round() / 2))]
+              .toUpperCase();
+    } else {
+      return 0.toString();
+    }
   }
 
   @override

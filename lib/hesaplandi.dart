@@ -3,16 +3,14 @@ import 'pagewrapper.dart';
 
 class Hesaplandi extends StatelessWidget {
   final String title;
-  final Color titleColor;
   final Map controller;
   final Map _dersler = {};
 
-  Hesaplandi(
-      {Key? key,
-      required this.controller,
-      required this.title,
-      this.titleColor = const Color(0xFF424242)})
-      : super(key: key);
+  Hesaplandi({
+    Key? key,
+    required this.controller,
+    required this.title,
+  }) : super(key: key);
 
   String hesaplama() {
     double ortalama = 0;
