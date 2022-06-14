@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'formbox.dart';
 
+// ignore: must_be_immutable
 class GpaList extends StatefulWidget {
   GpaList({Key? key, this.gap = 16, required this.controller})
       : super(key: key);
@@ -26,7 +27,7 @@ class _GpaListState extends State<GpaList> {
           children: [
             Expanded(
               child: FormBox(
-                  validator: false,
+                  validatorMode: 2,
                   maxLength: 2,
                   question: "Dersin Notu",
                   controller: _firstcontroller,
@@ -66,7 +67,7 @@ class _GpaListState extends State<GpaList> {
       children: [
         Expanded(
           child: FormBox(
-              validator: false,
+              validatorMode: 1,
               maxLength: 2,
               question: "Dersin Notu",
               controller: controller,

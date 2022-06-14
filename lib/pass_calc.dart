@@ -1,29 +1,52 @@
 import 'package:examinator/pagewrapper.dart';
 import 'package:flutter/material.dart';
-import 'gpa_calc_list.dart';
-import "gpa_hesaplandi.dart";
+import 'pass_calc_list.dart';
+import "pass_hesaplandi.dart";
 
-// ignore: must_be_immutable
-class GpaCalc extends StatelessWidget {
-  Map controller = {};
-  final String title;
-  final double gap;
-  GpaCalc(
-      {Key? key,
-      required this.title,
-      required this.gap,
-      required this.controller})
-      : super(key: key);
+class PassCalc extends StatelessWidget {
+  final TextEditingController _odev = TextEditingController();
+  final String title = "Kaçla Geçerim?";
+  late final Map _controller = {
+    "name": TextEditingController(),
+    "vize": {},
+    "odev": {},
+    "gnotu": TextEditingController(),
+    "vizew": TextEditingController(),
+    "odevw": _odev,
+    "finalw": TextEditingController(),
+  };
+  PassCalc({Key? key}) : super(key: key);
 
   bool hesaplamaValidator() {
-    for (var i in controller.values) {
-      if (!["ff", "na", "dd", "dc", "cc", "cb", "bb", "ba", "aa"]
-          .contains(i[1][0].text.toLowerCase())) {
+    if (double.tryParse(_controller["gnotu"].text) == null) {
+      return false;
+    } else if (0 >= double.parse(_controller["gnotu"].text) ||
+        double.parse(_controller["gnotu"].text) >= 100) {
+      return false;
+    }
+    if (double.tryParse(_controller["vizew"].text) == null) {
+      return false;
+    } else if (0 >= double.parse(_controller["vizew"].text) ||
+        double.parse(_controller["vizew"].text) >= 100) {
+      return false;
+    }
+    for (var i in _controller["vize"].keys) {
+      if (double.tryParse(_controller["vize"][i][1].text) == null) {
         return false;
-      } else if (double.tryParse(i[1][1].text) == null) {
+      } else if (0 >= double.parse(_controller["vize"][i][1].text) ||
+          double.parse(_controller["vize"][i][1].text) >= 100) {
         return false;
       }
     }
+    for (var i in _controller["odev"].keys) {
+      if (double.tryParse(_controller["odev"][i][1].text) == null) {
+        return false;
+      } else if (0 >= double.parse(_controller["odev"][i][1].text) ||
+          double.parse(_controller["odev"][i][1].text) >= 100) {
+        return false;
+      }
+    }
+
     return true;
   }
 
@@ -39,7 +62,10 @@ class GpaCalc extends StatelessWidget {
               shape: const RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(16))),
-              title: Text(title, style: Theme.of(context).textTheme.headline5),
+              title: Text(
+                title,
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
               backgroundColor: Theme.of(context).colorScheme.background,
             ),
             body: Column(
@@ -47,8 +73,8 @@ class GpaCalc extends StatelessWidget {
                 Expanded(
                   child: CardWrapper(
                     padding: 16,
-                    child: GpaList(
-                      controller: controller,
+                    child: PassList(
+                      controller: _controller,
                     ),
                   ),
                 ),
@@ -62,9 +88,9 @@ class GpaCalc extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => GpaHesaplandi(
+                                        builder: (context) => PassHesaplandi(
                                               title: "Notlarınız",
-                                              controller: controller,
+                                              controller: _controller,
                                             )));
                               } else {
                                 showDialog<String>(

@@ -1,5 +1,6 @@
 import 'package:examinator/gpacalc.dart';
 import 'package:examinator/multiform_page.dart';
+import 'package:examinator/pass_calc.dart';
 import 'package:flutter/material.dart';
 import 'form_page.dart';
 import 'pagewrapper.dart';
@@ -114,7 +115,7 @@ class MyHomePage extends StatelessWidget {
                         height: 16,
                       ),
                       ElevatedButton(
-                          child: Text("GPA Calculation",
+                          child: Text("GPA Hesaplama",
                               style: TextStyle(
                                   color:
                                       Theme.of(context).colorScheme.onPrimary,
@@ -131,9 +132,33 @@ class MyHomePage extends StatelessWidget {
                                 MaterialPageRoute(
                                   builder: (context) {
                                     return GpaCalc(
-                                        title: "GPA Calculation",
-                                        gap: 16,
+                                        title: "GPA Hesaplama", gap: 16,
+                                        // ignore: prefer_const_literals_to_create_immutables
                                         controller: {});
+                                  },
+                                ),
+                              )),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      ElevatedButton(
+                          child: Text("Kaçla Geçerim?",
+                              style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                  fontWeight: FontWeight.w600,
+                                  wordSpacing: 0.15,
+                                  fontSize: 16)),
+                          style: ElevatedButton.styleFrom(
+                              primary: Theme.of(context).colorScheme.primary,
+                              minimumSize: const Size(200, 40),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16))),
+                          onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return PassCalc();
                                   },
                                 ),
                               ))
