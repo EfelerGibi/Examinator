@@ -7,23 +7,42 @@ class PageWrapper extends StatelessWidget {
   const PageWrapper({Key? key, required this.child, this.padding = 0})
       : super(key: key);
 
+  Color darken(Color color, [double amount = .1]) {
+    assert(amount >= 0 && amount <= 1);
+
+    final hsl = HSLColor.fromColor(color);
+    final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
+
+    return hslDark.toColor();
+  }
+
+  Color lighten(Color color, [double amount = .1]) {
+    assert(amount >= 0 && amount <= 1);
+
+    final hsl = HSLColor.fromColor(color);
+    final hslLight =
+        hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
+
+    return hslLight.toColor();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment(-1.0, -1),
-              end: Alignment(-1.0, 1),
+              begin: const Alignment(-1.0, -1),
+              end: const Alignment(1.0, 1),
               colors: [
-                Color(0xFF3366FF),
-                Color(0xFF00CCFF),
+                Theme.of(context).colorScheme.tertiaryContainer,
+                Theme.of(context).colorScheme.secondary,
               ],
-              stops: [0.0, 1.0],
+              stops: const [0.0, 1.0],
               tileMode: TileMode.clamp),
         ),
-        child: Padding(
-          padding: EdgeInsets.all(padding),
-          child: Container(child: child),
+        child: Container(
+          child: child,
+          margin: EdgeInsets.all(padding),
         ));
   }
 }
@@ -45,45 +64,19 @@ class CardWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (infHeight) {
-      return Padding(
-          padding: EdgeInsets.all(outerPadding),
-          child: Container(
-              height: double.infinity,
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFF424242).withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                  color: Theme.of(context).colorScheme.background,
-                  borderRadius: BorderRadius.circular(16)),
-              width: double.infinity,
-              child: Padding(
-                padding: EdgeInsets.all(padding),
-                child: child,
-              )));
-    } else {
-      return Padding(
+    return SizedBox(
+      width: double.infinity,
+      child: Card(
+        elevation: 8,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(padding),
+        ),
+        margin: EdgeInsets.all(padding),
+        child: Padding(
           padding: EdgeInsets.all(padding),
-          child: Container(
-              // alignment: Axis.vertical,
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFF424242).withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                  color: Theme.of(context).colorScheme.background,
-                  borderRadius: BorderRadius.circular(16)),
-              width: double.infinity,
-              child: Padding(padding: EdgeInsets.all(padding), child: child)));
-    }
+          child: child,
+        ),
+      ),
+    );
   }
 }
