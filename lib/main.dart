@@ -110,8 +110,11 @@ class MyHomePage extends StatelessWidget {
                               minimumSize: const Size(200, 40),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(16)))),
+                      const SizedBox(
+                        height: 16,
+                      ),
                       ElevatedButton(
-                          child: Text("Gpacalc",
+                          child: Text("GPA Calculation",
                               style: TextStyle(
                                   color:
                                       Theme.of(context).colorScheme.onPrimary,
@@ -128,7 +131,7 @@ class MyHomePage extends StatelessWidget {
                                 MaterialPageRoute(
                                   builder: (context) {
                                     return GpaCalc(
-                                        title: "gpacalc",
+                                        title: "GPA Calculation",
                                         gap: 16,
                                         controller: {});
                                   },

@@ -1,6 +1,7 @@
 import 'package:examinator/pagewrapper.dart';
 import 'package:flutter/material.dart';
 import 'gpa_calc_list.dart';
+import "gpa_hesaplandi.dart";
 
 class GpaCalc extends StatelessWidget {
   Map controller = {};
@@ -57,6 +58,13 @@ class GpaCalc extends StatelessWidget {
                         child: ElevatedButton(
                             onPressed: () {
                               if (hesaplamaValidator()) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => GpaHesaplandi(
+                                              title: "Notlarınız",
+                                              controller: controller,
+                                            )));
                               } else {
                                 showDialog<String>(
                                     context: context,
