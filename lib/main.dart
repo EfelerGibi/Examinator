@@ -1,3 +1,4 @@
+import 'package:examinator/gpacalc.dart';
 import 'package:examinator/multiform_page.dart';
 import 'package:flutter/material.dart';
 import 'form_page.dart';
@@ -109,6 +110,30 @@ class MyHomePage extends StatelessWidget {
                               minimumSize: const Size(200, 40),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(16)))),
+                      ElevatedButton(
+                          child: Text("Gpacalc",
+                              style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                  fontWeight: FontWeight.w600,
+                                  wordSpacing: 0.15,
+                                  fontSize: 16)),
+                          style: ElevatedButton.styleFrom(
+                              primary: Theme.of(context).colorScheme.primary,
+                              minimumSize: const Size(200, 40),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16))),
+                          onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return GpaCalc(
+                                        title: "gpacalc",
+                                        gap: 16,
+                                        controller: {});
+                                  },
+                                ),
+                              ))
                     ],
                   ),
                 ],
