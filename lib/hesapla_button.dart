@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 class HesaplaButton extends StatelessWidget {
   final double width;
   final Map controller;
-  const HesaplaButton({Key? key, required this.controller, this.width = 48})
+  String? _errType;
+  HesaplaButton({Key? key, required this.controller, this.width = 48})
       : super(key: key);
 
   bool hesaplamaValidator() {
@@ -19,6 +20,8 @@ class HesaplaButton extends StatelessWidget {
               i[j].text != null &&
               double.tryParse(i[j].text) == null) {
           } else if (double.tryParse(i[j].text) == null) {
+            _errType = "Ödev notunuza lütfen geçerli bir sayı giriniz";
+
             return false;
           } else if (double.parse(i[j].text) > 100) {
             return false;
@@ -28,6 +31,11 @@ class HesaplaButton extends StatelessWidget {
         } else if (i[j] is Map) {
           for (var k in i[j].values) {
             if (double.tryParse(k[1].text) == null) {
+              _errType = "Vize ve Ödev notunuzu kontrol ediniz.";
+              return false;
+            } else if (double.parse(k[1].text) > 100 ||
+                double.parse(k[1].text) < 0) {
+              _errType = "Vize ve Ödev notunuzu kontrol ediniz.";
               return false;
             }
           }
@@ -38,6 +46,7 @@ class HesaplaButton extends StatelessWidget {
     if (weights == 100) {
       return true;
     } else {
+      _errType = "Not ağırlıklarını kontrol ediniz";
       return false;
     }
   }
@@ -71,9 +80,8 @@ class HesaplaButton extends StatelessWidget {
                                 style: TextStyle(
                                     //color: Colors.white,
                                     )),
-                            content: const Text(
-                                'Girdilerinizi bir daha kontrol edip tekrar hesaplayınız.',
-                                style: TextStyle(
+                            content: Text(_errType!,
+                                style: const TextStyle(
                                     //color: Colors.white,
                                     )),
                             actions: <Widget>[
