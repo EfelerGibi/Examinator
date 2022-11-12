@@ -55,6 +55,10 @@ class PassHesaplandi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String hesaplanan = hesaplama();
+    String hesaplananText = double.parse(hesaplanan) > 100
+        ? "Finalden " + hesaplanan + " almanız gerekiyor."
+        : "Dersten Geçtiniz";
     return PageWrapper(
         child: Scaffold(
             backgroundColor: Colors.transparent,
@@ -74,22 +78,48 @@ class PassHesaplandi extends StatelessWidget {
             body: CardWrapper(
                 padding: 24,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Almanız Gereken Not",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onBackground,
-                          fontSize: 42,
-                          decoration: TextDecoration.underline),
-                    ),
-                    Text(
-                      "Finalden " + hesaplama() + " almanız gerekiyor.",
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onBackground,
-                      ),
-                    )
-                  ],
-                ))));
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          SizedBox(
+                            width: 200,
+                            height: 200,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 8,
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .tertiaryContainer,
+                              value: (double.parse(hesaplanan) / 100),
+                            ),
+                          ),
+                          Wrap(
+                            direction: Axis.vertical,
+                            alignment: WrapAlignment.center,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              Text(
+                                "Almanız Gereken Not",
+                                style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground,
+                                    fontSize: 16,
+                                    decoration: TextDecoration.underline),
+                              ),
+                              Text(
+                                hesaplananText,
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground,
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      )
+                    ]))));
   }
 }

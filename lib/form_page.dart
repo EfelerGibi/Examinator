@@ -35,6 +35,15 @@ class FormPage extends StatelessWidget {
         "odevw": odev,
         "finalw": TextEditingController(),
         "kredi": kredi,
+        "barem": [
+          TextEditingController.fromValue(const TextEditingValue(text: "90")),
+          TextEditingController.fromValue(const TextEditingValue(text: "85")),
+          TextEditingController.fromValue(const TextEditingValue(text: "80")),
+          TextEditingController.fromValue(const TextEditingValue(text: "70")),
+          TextEditingController.fromValue(const TextEditingValue(text: "65")),
+          TextEditingController.fromValue(const TextEditingValue(text: "55")),
+          TextEditingController.fromValue(const TextEditingValue(text: "40")),
+        ]
       };
       _page.add(CardWrapper(
           child: FormList(

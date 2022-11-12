@@ -75,7 +75,8 @@ class MyHomePage extends StatelessWidget {
                                   wordSpacing: 0.15,
                                   fontSize: 16)),
                           style: ElevatedButton.styleFrom(
-                              primary: Theme.of(context).colorScheme.primary,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
                               minimumSize: const Size(200, 40),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(16)))),
@@ -107,7 +108,8 @@ class MyHomePage extends StatelessWidget {
                                   wordSpacing: 0.15,
                                   fontSize: 16)),
                           style: ElevatedButton.styleFrom(
-                              primary: Theme.of(context).colorScheme.primary,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
                               minimumSize: const Size(200, 40),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(16)))),
@@ -123,7 +125,8 @@ class MyHomePage extends StatelessWidget {
                                   wordSpacing: 0.15,
                                   fontSize: 16)),
                           style: ElevatedButton.styleFrom(
-                              primary: Theme.of(context).colorScheme.primary,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
                               minimumSize: const Size(200, 40),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(16))),
@@ -150,7 +153,8 @@ class MyHomePage extends StatelessWidget {
                                   wordSpacing: 0.15,
                                   fontSize: 16)),
                           style: ElevatedButton.styleFrom(
-                              primary: Theme.of(context).colorScheme.primary,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
                               minimumSize: const Size(200, 40),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(16))),

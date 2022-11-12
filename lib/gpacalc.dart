@@ -8,6 +8,7 @@ class GpaCalc extends StatelessWidget {
   Map controller = {};
   final String title;
   final double gap;
+  String? _errType;
   GpaCalc(
       {Key? key,
       required this.title,
@@ -19,8 +20,10 @@ class GpaCalc extends StatelessWidget {
     for (var i in controller.values) {
       if (!["ff", "na", "dd", "dc", "cc", "cb", "bb", "ba", "aa"]
           .contains(i[1][0].text.toLowerCase())) {
+        _errType = "Harf notunuzu kontrol ediniz.";
         return false;
       } else if (double.tryParse(i[1][1].text) == null) {
+        _errType = "Dersin kredisini kontrol ediniz.";
         return false;
       }
     }
@@ -82,9 +85,8 @@ class GpaCalc extends StatelessWidget {
                                                 style: TextStyle(
                                                     //color: Colors.white,
                                                     )),
-                                            content: const Text(
-                                                'Girdilerinizi bir daha kontrol edip tekrar hesaplayınız.',
-                                                style: TextStyle(
+                                            content: Text(_errType!,
+                                                style: const TextStyle(
                                                     //color: Colors.white,
                                                     )),
                                             actions: <Widget>[

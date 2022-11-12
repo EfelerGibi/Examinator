@@ -30,7 +30,7 @@ class _GpaListState extends State<GpaList> {
                   inputType: TextInputType.text,
                   validatorMode: 2,
                   maxLength: 2,
-                  question: "Dersin Notu",
+                  question: "Dersin Harf Notu",
                   controller: _firstcontroller,
                   hintText: "Dersinizin notu..."),
             ),

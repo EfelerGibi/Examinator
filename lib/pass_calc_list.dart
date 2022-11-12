@@ -12,60 +12,62 @@ class PassList extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        FormBox(
-            inputType: TextInputType.text,
-            validatorMode: 2,
-            maxLength: 50,
-            question: "Ders ismini giriniz",
-            controller: controller["name"],
-            hintText: "Dersin ismi..."),
-        SizedBox(
-          height: gap,
-        ),
-        MultiFormBox(
-          hintText: 'Vize Notunuz...',
-          question: 'Vize notunuzu giriniz.',
-          controller: controller,
-          title: 'vize',
-        ),
-        SizedBox(
-          height: gap,
-        ),
-        MultiFormBox(
-            buttonText: "Ödev Ekle",
-            hasButton: true,
-            hasFirstField: false,
-            hintText: "Ödev Notunuz...",
-            question: "Ödev notunuzu giriniz.",
+    return Scrollbar(
+      child: ListView(
+        children: [
+          FormBox(
+              inputType: TextInputType.text,
+              validatorMode: 2,
+              maxLength: 50,
+              question: "Ders ismini giriniz",
+              controller: controller["name"],
+              hintText: "Dersin ismi..."),
+          SizedBox(
+            height: gap,
+          ),
+          MultiFormBox(
+            hintText: 'Vize Notunuz...',
+            question: 'Vize notunuzu giriniz.',
             controller: controller,
-            title: 'odev'),
-        FormBox(
-            question: "Vize not ağırlığını giriniz.",
-            controller: controller["vizew"],
-            substractController: controller["odevw"],
-            changedController: controller["finalw"],
-            hintText: "Vize not ağırlığını giriniz."),
-        SizedBox(
-          height: gap,
-        ),
-        FormBox(
-            question: "Final not ağırlığınız",
-            controller: controller["finalw"],
-            enabled: false,
-            hintText: "Final not ağırlığı..."),
-        SizedBox(
-          height: gap,
-        ),
-        FormBox(
-            question: "Geçme notu",
-            controller: controller["gnotu"],
-            hintText: "Geçme Notu..."),
-        SizedBox(
-          height: gap,
-        ),
-      ],
+            title: 'vize',
+          ),
+          SizedBox(
+            height: gap,
+          ),
+          MultiFormBox(
+              buttonText: "Ödev Ekle",
+              hasButton: true,
+              hasFirstField: false,
+              hintText: "Ödev Notunuz...",
+              question: "Ödev notunuzu giriniz.",
+              controller: controller,
+              title: 'odev'),
+          FormBox(
+              question: "Vize not ağırlığını giriniz.",
+              controller: controller["vizew"],
+              substractController: controller["odevw"],
+              changedController: controller["finalw"],
+              hintText: "Vize not ağırlığını giriniz."),
+          SizedBox(
+            height: gap,
+          ),
+          FormBox(
+              question: "Final not ağırlığınız",
+              controller: controller["finalw"],
+              enabled: false,
+              hintText: "Final not ağırlığı..."),
+          SizedBox(
+            height: gap,
+          ),
+          FormBox(
+              question: "Geçme notu",
+              controller: controller["gnotu"],
+              hintText: "Geçme Notu..."),
+          SizedBox(
+            height: gap,
+          ),
+        ],
+      ),
     );
   }
 }

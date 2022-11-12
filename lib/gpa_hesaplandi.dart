@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 class GpaHesaplandi extends StatelessWidget {
   final String title;
   final Map controller;
+  double? _rawValue;
 
-  const GpaHesaplandi({
+  GpaHesaplandi({
     Key? key,
     required this.controller,
     required this.title,
@@ -34,7 +35,8 @@ class GpaHesaplandi extends StatelessWidget {
     }
 
     if (_creds != 0) {
-      return (_ort / _creds).toStringAsFixed(2) +
+      _rawValue = (_ort / _creds);
+      return (_rawValue!).toStringAsFixed(2) +
           " " +
           _scalars1[_scalars2.indexOf((((_ort / _creds) * 2).round() / 2))]
               .toUpperCase();
@@ -45,6 +47,7 @@ class GpaHesaplandi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String hesaplanan = hesaplama();
     return PageWrapper(
         child: Scaffold(
             backgroundColor: Colors.transparent,
@@ -66,19 +69,39 @@ class GpaHesaplandi extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Ortalamanız",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onBackground,
-                          fontSize: 42,
-                          decoration: TextDecoration.underline),
-                    ),
-                    Text(
-                      "Genel ortalamanız: " + hesaplama(),
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onBackground,
+                    Stack(alignment: AlignmentDirectional.center, children: [
+                      SizedBox(
+                        width: 200,
+                        height: 200,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 8,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.tertiaryContainer,
+                          value: (_rawValue! / 4),
+                        ),
                       ),
-                    )
+                      Wrap(
+                        direction: Axis.vertical,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        alignment: WrapAlignment.center,
+                        children: [
+                          Text(
+                            "Ortalamanız",
+                            style: TextStyle(
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
+                                fontSize: 16,
+                                decoration: TextDecoration.underline),
+                          ),
+                          Text(
+                            "Genel ortalamanız: " + hesaplanan,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onBackground,
+                            ),
+                          )
+                        ],
+                      ),
+                    ]),
                   ],
                 ))));
   }
