@@ -1,24 +1,19 @@
-import 'package:examinator/baremlist.dart';
 import 'package:flutter/material.dart';
 import 'formbox.dart';
 import 'multiformbox.dart';
 
-class FormList extends StatelessWidget {
-  final bool tekDers;
+class PassList extends StatelessWidget {
   final Map controller;
   final double gap;
-  //late BaremList _barem;
-  FormList({
+  const PassList({
     Key? key,
     this.gap = 16,
-    this.tekDers = false,
     required this.controller,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scrollbar(
       child: ListView(
-        shrinkWrap: true,
         children: [
           FormBox(
               inputType: TextInputType.text,
@@ -31,19 +26,11 @@ class FormList extends StatelessWidget {
             height: gap,
           ),
           MultiFormBox(
-            //hasButton: true,
-            //hasFirstField: false,
             hintText: 'Vize Notunuz...',
-            question: 'Vize notunuzu giriniz.', controller: controller,
+            question: 'Vize notunuzu giriniz.',
+            controller: controller,
             title: 'vize',
           ),
-          SizedBox(
-            height: gap,
-          ),
-          FormBox(
-              question: "Final notunuzu giriniz.",
-              controller: controller["final"],
-              hintText: "Final Notunuz..."),
           SizedBox(
             height: gap,
           ),
@@ -72,21 +59,13 @@ class FormList extends StatelessWidget {
           SizedBox(
             height: gap,
           ),
-          if (!tekDers) ...[
-            FormBox(
-                question: "Dersin kredisini giriniz.",
-                controller: controller["kredi"],
-                hintText: "Dersin kredisi..."),
-            SizedBox(
-              height: gap,
-            ),
-            BaremList(
-              controllers: controller["barem"],
-            ),
-            SizedBox(
-              height: gap,
-            ),
-          ]
+          FormBox(
+              question: "Geçme notu",
+              controller: controller["gnotu"],
+              hintText: "Geçme Notu..."),
+          SizedBox(
+            height: gap,
+          ),
         ],
       ),
     );
