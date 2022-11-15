@@ -14,7 +14,7 @@ A flutter app that calculates college grades with a good ui.
 - [x] Follow device themes (material u)
 - [x] Add dark/light mode
 - [ ] Make a logo
-- [ ] Overhaul the calculated screen
+- [x] Overhaul the calculated screen
 - [x] Change the "add class" buttons/ make it more intuitive 
 - [ ] Add a table that holds average grades to calculated screen
 - [ ] Add localization (Currently only the app is only in turkish)
