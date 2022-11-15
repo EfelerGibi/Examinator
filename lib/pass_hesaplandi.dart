@@ -13,9 +13,6 @@ class PassHesaplandi extends StatelessWidget {
   }) : super(key: key);
 
   String hesaplama() {
-    double ortalama = 0;
-    double kredi = 0;
-
     _dersler[controller["name"]] = {
       "final": (((100 * parseDouble(controller["gnotu"]) -
               (parseDouble(controller["vizew"]) *
@@ -56,7 +53,7 @@ class PassHesaplandi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String hesaplanan = hesaplama();
-    String hesaplananText = double.parse(hesaplanan) > 100
+    String hesaplananText = double.parse(hesaplanan) < 100
         ? "Finalden " + hesaplanan + " almanız gerekiyor."
         : "Dersten Geçtiniz";
     return PageWrapper(

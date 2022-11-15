@@ -127,8 +127,9 @@ class Hesaplandi extends StatelessWidget {
                             Text(
                               "Genel ortalamanız: " +
                                   hesaplanan[0] +
-                                  " " +
+                                  "\n GPA: " +
                                   hesaplanan[1],
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 color:
                                     Theme.of(context).colorScheme.onBackground,

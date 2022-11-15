@@ -1,6 +1,7 @@
 import 'package:examinator/hesaplandi.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class HesaplaButton extends StatelessWidget {
   final double width;
   final Map controller;

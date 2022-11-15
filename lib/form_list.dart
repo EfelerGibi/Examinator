@@ -8,7 +8,7 @@ class FormList extends StatelessWidget {
   final Map controller;
   final double gap;
   //late BaremList _barem;
-  FormList({
+  const FormList({
     Key? key,
     this.gap = 16,
     this.tekDers = false,

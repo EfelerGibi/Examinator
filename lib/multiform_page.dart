@@ -11,7 +11,7 @@ class MultiFormPage extends StatefulWidget {
   final String title;
   final Color titleColor;
   final double gap;
-  MultiFormPage(
+  const MultiFormPage(
       {Key? key,
       this.gap = 16,
       this.tekDers = false,
