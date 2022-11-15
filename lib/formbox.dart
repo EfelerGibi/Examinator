@@ -9,7 +9,7 @@ class FormBox extends StatelessWidget {
   final bool emptyCheck;
   final Color fieldColor;
   final Color borderColor;
-  final bool validator;
+  final int validatorMode;
   final double padding;
   final TextInputType inputType;
   final int maxLength;
@@ -26,7 +26,7 @@ class FormBox extends StatelessWidget {
       this.changedController,
       this.inputType = TextInputType.number,
       this.padding = 0,
-      this.validator = true,
+      this.validatorMode = 0,
       this.emptyCheck = true,
       this.enabled = true,
       this.fieldColor = Colors.grey,
@@ -70,7 +70,7 @@ class FormBox extends StatelessWidget {
         maxLength: maxLength,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: (value) {
-          if (validator) {
+          if (validatorMode == 0) {
             if (value == null || value.isEmpty) {
               if (emptyCheck) {
                 return null;
@@ -84,7 +84,7 @@ class FormBox extends StatelessWidget {
             } else if (100 < double.parse(value)) {
               return "100'den küçük değer giriniz.";
             }
-          } else {
+          } else if (validatorMode == 0) {
             if (value == null || value.isEmpty) {
               if (emptyCheck) {
                 return null;
@@ -96,7 +96,10 @@ class FormBox extends StatelessWidget {
               return "Uygun değer Giriniz";
             }
             return null;
+          } else if (validatorMode == 2) {
+            return null;
           }
+          return null;
         },
         keyboardType: inputType,
         enabled: enabled,
