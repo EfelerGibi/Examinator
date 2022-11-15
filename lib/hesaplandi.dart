@@ -45,6 +45,7 @@ class Hesaplandi extends StatelessWidget {
       gpa += _dersler[ders]["barem"] * _dersler[ders]["kredi"];
       kredi += _dersler[ders]["kredi"];
     }
+    print(_dersler);
     return [
       (ortalama / kredi).toStringAsFixed(2),
       (gpa / kredi).toStringAsFixed(2)
@@ -93,52 +94,83 @@ class Hesaplandi extends StatelessWidget {
             ),
             body: CardWrapper(
                 padding: 24,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                child: ListView(
+                  //mainAxisAlignment: MainAxisAlignment.center,
+                  //crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Stack(
-                      alignment: AlignmentDirectional.center,
-                      children: [
-                        SizedBox(
-                          width: 200,
-                          height: 200,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 8,
-                            backgroundColor:
-                                Theme.of(context).colorScheme.tertiaryContainer,
-                            value: (double.parse(hesaplanan[0]) / 100),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 48, 0, 48),
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          SizedBox(
+                            width: 200,
+                            height: 200,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 8,
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .tertiaryContainer,
+                              value: (double.parse(hesaplanan[0]) / 100),
+                            ),
                           ),
-                        ),
-                        Wrap(
-                          direction: Axis.vertical,
-                          alignment: WrapAlignment.center,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            Text(
-                              "Ortalamanız",
-                              style: TextStyle(
+                          Wrap(
+                            direction: Axis.vertical,
+                            alignment: WrapAlignment.center,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              Text(
+                                "Ortalamanız",
+                                style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground,
+                                    fontSize: 16,
+                                    decoration: TextDecoration.underline),
+                              ),
+                              Text(
+                                "Genel ortalamanız: " +
+                                    hesaplanan[0] +
+                                    "\n GPA: " +
+                                    hesaplanan[1],
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
                                   color: Theme.of(context)
                                       .colorScheme
                                       .onBackground,
-                                  fontSize: 16,
-                                  decoration: TextDecoration.underline),
-                            ),
-                            Text(
-                              "Genel ortalamanız: " +
-                                  hesaplanan[0] +
-                                  "\n GPA: " +
-                                  hesaplanan[1],
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color:
-                                    Theme.of(context).colorScheme.onBackground,
+                                ),
                               ),
-                            ),
-                          ],
-                        )
-                      ],
+                            ],
+                          )
+                        ],
+                      ),
                     ),
+                    const Divider(
+                      height: 50,
+                    ),
+                    Row(children: const [
+                      Text("Ders İsmi"),
+                      Expanded(child: SizedBox()),
+                      Text("Dersin Ortalaması"),
+                      Expanded(child: SizedBox()),
+                      Text("Dersin Kredisi"),
+                    ]),
+                    for (var value in _dersler.keys) ...[
+                      Row(children: [
+                        Text(value.text),
+                        const Expanded(child: SizedBox()),
+                        Text(
+                          _dersler[value]["ortalama"].toString(),
+                        ),
+                        const Expanded(child: SizedBox()),
+                        Text(
+                          _dersler[value]["kredi"].toString(),
+                        ),
+                      ]),
+                      const SizedBox(
+                        height: 16,
+                      )
+                    ],
                   ],
                 ))));
   }

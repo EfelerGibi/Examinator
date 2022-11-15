@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class HesaplaButton extends StatelessWidget {
   final double width;
   final Map controller;
-  String? _errType;
+  String _errType = "";
   HesaplaButton({Key? key, required this.controller, this.width = 48})
       : super(key: key);
 
@@ -81,7 +81,7 @@ class HesaplaButton extends StatelessWidget {
                                 style: TextStyle(
                                     //color: Colors.white,
                                     )),
-                            content: Text(_errType!,
+                            content: Text(_errType,
                                 style: const TextStyle(
                                     //color: Colors.white,
                                     )),

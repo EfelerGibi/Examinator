@@ -1,4 +1,5 @@
 import 'package:examinator/formbox.dart';
+import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 
 class BaremList extends StatelessWidget {
@@ -8,13 +9,14 @@ class BaremList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExpansionTile(
-      backgroundColor: Theme.of(context).focusColor,
+    return ExpansionTileCard(
+      borderRadius: BorderRadius.circular(16),
+      //backgroundColor: Theme.of(context).focusColor,
       title: Text(
         "Not Baremleri",
         style: TextStyle(color: Theme.of(context).disabledColor),
       ),
-      iconColor: Theme.of(context).disabledColor,
+      //iconColor: Theme.of(context).disabledColor,
       children: [
         BaremForm(
           text: "AA",

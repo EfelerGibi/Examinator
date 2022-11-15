@@ -120,9 +120,10 @@ class _MultiFormPageState extends State<MultiFormPage> {
 
   void removePageIndexed() async {
     if (widget.controller.keys.length != 1) {
-      _pageIndex--;
-      if (_pageIndex != 0) {}
-      await Future.delayed(const Duration(milliseconds: 0), () {});
+      if (_pageIndex >= 0) {
+        _pageIndex--;
+      }
+      //await Future.delayed(const Duration(milliseconds: 0), () {});
       _carouselController.previousPage(
           duration: const Duration(milliseconds: 200));
       setState(() {
@@ -165,6 +166,7 @@ class _MultiFormPageState extends State<MultiFormPage> {
             body: Column(
               children: [
                 Expanded(
+                  flex: 25,
                   child: CarouselSlider(
                       carouselController: _carouselController,
                       options: CarouselOptions(
@@ -204,9 +206,18 @@ class _MultiFormPageState extends State<MultiFormPage> {
                         ) */
                       ]),
                 ),
-                DotsIndicator(
-                  dotsCount: (widget.controller.length),
-                  position: (_pageIndex >= 0) ? (_pageIndex / 1) : 0,
+                Expanded(
+                  flex: 1,
+                  child: ListView(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      DotsIndicator(
+                        dotsCount: (widget.controller.length),
+                        position: (_pageIndex >= 0) ? (_pageIndex / 1) : 0,
+                      ),
+                    ],
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(48, 8, 48, 0),
