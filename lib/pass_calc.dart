@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'pass_calc_list.dart';
 import "pass_hesaplandi.dart";
 
+// ignore: must_be_immutable
 class PassCalc extends StatelessWidget {
   final TextEditingController _odev = TextEditingController();
   final String title = "Kaçla Geçerim?";

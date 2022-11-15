@@ -61,7 +61,7 @@ class BaremList extends StatelessWidget {
 class BaremForm extends StatelessWidget {
   final String text;
   final TextEditingController controller;
-  BaremForm({Key? key, required this.text, required this.controller})
+  const BaremForm({Key? key, required this.text, required this.controller})
       : super(key: key);
 
   @override
@@ -71,7 +71,7 @@ class BaremForm extends StatelessWidget {
       child: Row(
         children: [
           Text(text),
-          SizedBox(
+          const SizedBox(
             width: 64,
           ),
           Expanded(

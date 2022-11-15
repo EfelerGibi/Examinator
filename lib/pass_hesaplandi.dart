@@ -13,9 +13,6 @@ class PassHesaplandi extends StatelessWidget {
   }) : super(key: key);
 
   String hesaplama() {
-    double ortalama = 0;
-    double kredi = 0;
-
     _dersler[controller["name"]] = {
       "final": (((100 * parseDouble(controller["gnotu"]) -
               (parseDouble(controller["vizew"]) *

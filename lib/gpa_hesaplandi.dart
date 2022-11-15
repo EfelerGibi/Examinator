@@ -1,10 +1,11 @@
 import 'package:examinator/pagewrapper.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class GpaHesaplandi extends StatelessWidget {
   final String title;
   final Map controller;
-  double? _rawValue;
+  double? _rawValue = 0;
 
   GpaHesaplandi({
     Key? key,
