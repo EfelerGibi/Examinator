@@ -53,8 +53,8 @@ class PassHesaplandi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String hesaplanan = hesaplama();
-    String hesaplananText = double.parse(hesaplanan) < 100
-        ? "Finalden " + hesaplanan + " almanız gerekiyor."
+    String hesaplananText = (double.parse(hesaplanan) > 0)
+        ? "Finalden " + hesaplanan + "\nalmanız gerekiyor."
         : "Dersten Geçtiniz";
     return PageWrapper(
         child: Scaffold(

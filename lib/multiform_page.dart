@@ -166,7 +166,6 @@ class _MultiFormPageState extends State<MultiFormPage> {
             body: Column(
               children: [
                 Expanded(
-                  flex: 25,
                   child: CarouselSlider(
                       carouselController: _carouselController,
                       options: CarouselOptions(
@@ -175,8 +174,8 @@ class _MultiFormPageState extends State<MultiFormPage> {
                               (_pageIndex = index);
                             });
                           },
+                          height: 600,
                           scrollDirection: Axis.horizontal,
-                          height: double.infinity,
                           enableInfiniteScroll: false),
                       items: [
                         ...widget.controller.keys,
@@ -206,17 +205,22 @@ class _MultiFormPageState extends State<MultiFormPage> {
                         ) */
                       ]),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: ListView(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      DotsIndicator(
-                        dotsCount: (widget.controller.length),
-                        position: (_pageIndex >= 0) ? (_pageIndex / 1) : 0,
-                      ),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(48, 0, 48, 0),
+                  child: SizedBox(
+                    height: 20,
+                    child: ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Center(
+                          child: DotsIndicator(
+                            dotsCount: (widget.controller.length),
+                            position: (_pageIndex >= 0) ? (_pageIndex / 1) : 0,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Padding(

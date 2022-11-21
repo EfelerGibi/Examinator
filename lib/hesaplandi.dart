@@ -45,7 +45,7 @@ class Hesaplandi extends StatelessWidget {
       gpa += _dersler[ders]["barem"] * _dersler[ders]["kredi"];
       kredi += _dersler[ders]["kredi"];
     }
-    print(_dersler);
+    //print(_dersler);
     return [
       (ortalama / kredi).toStringAsFixed(2),
       (gpa / kredi).toStringAsFixed(2)
